@@ -1,0 +1,163 @@
+<div class="container">
+  <h2>Due Generation</h2>
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+          DAILY
+        </a>
+      </div>
+      <div id="collapseOne" class="collapse show" data-parent="#accordion">
+        <div class="card-body">
+          <div class="text-center">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="generateDueDates('daily')"
+            >
+              Generate
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <a
+          class="collapsed card-link"
+          data-toggle="collapse"
+          href="#collapseTwo"
+        >
+          WEEKLY
+        </a>
+      </div>
+      <div id="collapseTwo" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+          <form class="k-form" name="form1">
+            <div class="k-form-field">
+              <ng-container *ngFor="let day of days; let i = index">
+                <input
+                  type="checkbox"
+                  id="ch{{ i + 1 }}"
+                  class="k-checkbox"
+                  name="ckb"
+                  value="{{ i }}"
+                  (change)="onCheckboxChange($event, i)"
+                />
+                <label class="k-checkbox-label" for="ch{{ i + 1 }}">{{
+                  day | uppercase
+                }}</label
+                >&nbsp;&nbsp;
+              </ng-container>
+            </div>
+            <div class="text-center">
+              <button
+                class="btn btn-primary"
+                (click)="generateDueDates('weekly')"
+              >
+                Generate
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <a
+          class="collapsed card-link"
+          data-toggle="collapse"
+          href="#collapseThree"
+        >
+          MONTHLY
+        </a>
+      </div>
+      <div id="collapseThree" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+          <form class="k-form" name="form1">
+            <div class="k-form-field">
+              <ng-container *ngFor="let month of months; let i = index">
+                <input
+                  type="checkbox"
+                  id="ch{{ i + 1 }}"
+                  class="k-checkbox"
+                  name="ckb"
+                  value="{{ i }}"
+                  (change)="onCheckboxChange($event, i)"
+                />
+                <label class="k-checkbox-label" for="ch{{ i + 1 }}">{{
+                  month | uppercase
+                }}</label
+                >&nbsp;&nbsp;
+              </ng-container>
+            </div>
+            <div class="text-center">
+              <button
+                class="btn btn-primary"
+                (click)="generateDueDates('monthly')"
+              >
+                Generate
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a
+          class="collapsed card-link"
+          data-toggle="collapse"
+          href="#collapseFour"
+        >
+          RANDOM
+        </a>
+      </div>
+      <div id="collapseFour" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-check-inline">
+                <label class="form-check-label" for="radio1">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="radio1"
+                    name="optradio"
+                    value="weekly"
+                    (change)="onRandomChange($event.target.value)"
+                  />WEEKLY:
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-check-inline">
+                <label class="form-check-label" for="radio1">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="radio1"
+                    name="optradio"
+                    value="monthly"
+                    (change)="onRandomChange($event.target.value)"
+                  />MONTHLY:
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="generateDueDates('random')"
+            >
+              Generate
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

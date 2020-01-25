@@ -1,0 +1,91 @@
+<div class="container">
+  <h2>Due Generation</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Frequency</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Weekly Off</th>
+        <th scope="col">Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Daily</td>
+        <td>{{ dateRange.startDate | date: "mediumDate" }}</td>
+        <td>{{ dateRange.endDate | date: "mediumDate" }}</td>
+        <td>
+          <ng-container *ngFor="let weekOff of weekOffDays"
+            >{{ weekOff }}<br
+          /></ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let dueDate of dueDateDaily"
+            >{{ dueDate | date: "mediumDate" }}<br
+          /></ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td>Weekly</td>
+        <td>{{ dateRange.startDate | date: "mediumDate" }}</td>
+        <td>{{ dateRange.endDate | date: "mediumDate" }}</td>
+        <td>
+          <ng-container *ngFor="let weekOff of weekOffDays"
+            >{{ weekOff }}<br
+          /></ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let dueDate of dueDateWeekly"
+            >{{ dueDate | date: "mediumDate" }}<br
+          /></ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td>Monthly</td>
+        <td>{{ dateRange.startDate | date: "mediumDate" }}</td>
+        <td>{{ dateRange.endDate | date: "mediumDate" }}</td>
+        <td>
+          <ng-container *ngFor="let weekOff of weekOffDays"
+            >{{ weekOff }}<br
+          /></ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let dueDate of dueDateMonthly"
+            >{{ dueDate | date: "mediumDate" }}<br
+          /></ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td>Random(Weekly)</td>
+        <td>{{ dateRange.startDate | date: "mediumDate" }}</td>
+        <td>{{ dateRange.endDate | date: "mediumDate" }}</td>
+        <td>
+          <ng-container *ngFor="let weekOff of weekOffDays"
+            >{{ weekOff }}<br
+          /></ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let dueDate of dueDateWeeklyRandom"
+            >{{ dueDate | date: "mediumDate" }}<br
+          /></ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td>Random(Monthly)</td>
+        <td>{{ dateRange.startDate | date: "mediumDate" }}</td>
+        <td>{{ dateRange.endDate | date: "mediumDate" }}</td>
+        <td>
+          <ng-container *ngFor="let weekOff of weekOffDays"
+            >{{ weekOff }}<br
+          /></ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let dueDate of dueDateMonthlyRandom"
+            >{{ dueDate | date: "mediumDate" }}<br
+          /></ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

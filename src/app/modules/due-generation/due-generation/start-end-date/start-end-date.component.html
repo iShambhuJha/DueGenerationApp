@@ -1,0 +1,71 @@
+<div class="container">
+  <h2>Due Generation</h2>
+  <div class="card">
+    <div class="card-header">Start/End Date</div>
+    <div class="card-body">
+      <form [formGroup]="startEndDateForm">
+        <div class="row">
+          <div class="col-12">
+            <label>STARTS FROM:</label>
+            <kendo-datepicker
+              style="width: 100%"
+              [(value)]="valueStart"
+              formControlName="startsFrom"
+            ></kendo-datepicker>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-check-inline">
+              <label class="form-check-label" for="radioEndsBy">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="radioEndsBy"
+                  value="endsBy"
+                  (change)="onChange($event.target.value)"
+                  name="optradio"
+                />ENDS BY:
+                <kendo-datepicker
+                  [(value)]="valueEnd"
+                  [min]="minDate"
+                  formControlName="endsBy"
+                ></kendo-datepicker>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-check-inline">
+              <label class="form-check-label" for="radio1">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="radio1"
+                  value="endsAfter"
+                  (change)="onChange($event.target.value)"
+                  name="optradio"
+                  checked
+                />ENDS AFTER
+                <kendo-numerictextbox
+                  [autoCorrect]="autoCorrect"
+                  [min]="min"
+                  [max]="max"
+                  [value]="valueNum"
+                  formControlName="endsAfter"
+                >
+                </kendo-numerictextbox
+                >&nbsp; Occurences
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button (click)="onStartEndSubmit()" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Due Generation</h2>
+    <div class="card">
+      <div class="card-header">Weekly Off</div>
+      <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+            <form class="k-form" name="form1">
+                <div class="k-form-field">
+                 <ng-container *ngFor="let day of days; let i=index">
+                    <input type="checkbox" id="ch{{i+1}}" class="k-checkbox"  name=ckb value={{i}} (change)="onCheckboxChange($event, i)" />
+                    <label class="k-checkbox-label" for="ch{{i+1}}">{{day | uppercase}}</label>&nbsp;&nbsp;
+                 </ng-container>
+                </div>
+                <div class="text-center">
+                  <button class="btn btn-primary" (click)="onSubmitWeeklyOff()">Submit</button>
+                </div>
+            </form>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
