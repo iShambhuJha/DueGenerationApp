@@ -19,15 +19,15 @@ export class WeeklyOffComponent implements OnInit {
   //limiting user to select to 1 or 2  checkboxes
    chkcontrol(j) {
     var total=0;
-    for(var i=0; i < document.forms.form1.ckb.length; i++){
-    if(document.forms.form1.ckb[i].checked){
-    total =total +1;}
-    if(total > 2){
-    alert("Please Select only two")
-    document.forms.form1.ckb[j].checked = false ;
-    return false;
-    }
-    }
+    // for(var i=0; i < document.forms.form1.ckb.length; i++){
+    // if(document.forms.form1.ckb[i].checked){
+    // total =total +1;}
+    // if(total > 2){
+    // alert("Please Select only two")
+    // document.forms.form1.ckb[j].checked = false ;
+    // return false;
+    // }
+    // }
     }
   // to be called once user select/deselect days of a week
   onCheckboxChange(event, value) {
