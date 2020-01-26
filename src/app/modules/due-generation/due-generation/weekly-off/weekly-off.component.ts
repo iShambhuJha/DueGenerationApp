@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-weekly-off',
@@ -8,27 +9,30 @@ import { Component, OnInit } from '@angular/core';
 export class WeeklyOffComponent implements OnInit {
   public days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
   selectedDays: any = [];
-  constructor() {
+  form1: Document = new Document();
+  counter: number = 0;
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
   }
-  chkControl(j) {
-    // var total=0;
-    // for(var i=0; i < document.form1.ckb.length; i++){
-    // if(document.form1.ckb[i].checked){
-    // total =total +1;}
-    // if(total > 2){
-    // alert("Please Select only two")
-    // document.form1.ckb[j].checked = false ;
-    // return false;
-    // }
-    // }
-  }
+  //limiting user to select to 1 or 2  checkboxes
+   chkcontrol(j) {
+    var total=0;
+    for(var i=0; i < document.forms.form1.ckb.length; i++){
+    if(document.forms.form1.ckb[i].checked){
+    total =total +1;}
+    if(total > 2){
+    alert("Please Select only two")
+    document.forms.form1.ckb[j].checked = false ;
+    return false;
+    }
+    }
+    }
+  // to be called once user select/deselect days of a week
   onCheckboxChange(event, value) {
 
     if (event.target.checked) {
-      console.log(value, 'value')
       this.selectedDays.push(value);
     }
     else if (!event.target.checked) {
@@ -40,11 +44,12 @@ export class WeeklyOffComponent implements OnInit {
         this.selectedDays.splice(index, 1);
       }
     }
-    console.log(this.selectedDays, 'this.selectedDays')
   }
+  // on submission of weekly off days
   onSubmitWeeklyOff() {
     localStorage.setItem('weekOffs', JSON.stringify(this.selectedDays));
     alert('data submitted');
+    this.router.navigate(['due-generation/frequency']);
 
   }
 }

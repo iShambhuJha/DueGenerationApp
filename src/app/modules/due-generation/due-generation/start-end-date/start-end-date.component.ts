@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { addDays } from '@progress/kendo-date-math';
 import { startEndDate } from '../../../../core/model/startEndDate.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-end-date',
@@ -20,7 +21,7 @@ export class StartEndDateComponent implements OnInit {
   public endDate: Date;
   dateData: startEndDate = new startEndDate();
   radioValue: any;
-  constructor() {
+  constructor( private router: Router) {
     localStorage.clear();
   }
 
@@ -34,7 +35,6 @@ export class StartEndDateComponent implements OnInit {
   }
   // Change function to be called on radio button change
   onChange(evt) {
-    console.log(evt);
     this.radioValue = evt;
   }
   // on form submission
@@ -48,5 +48,6 @@ export class StartEndDateComponent implements OnInit {
     this.dateData.endDate = this.endDate;
     localStorage.setItem('dateRange', JSON.stringify(this.dateData));
     alert('data submitted');
+    this.router.navigate(['due-generation/weekly-off']);
   }
 }

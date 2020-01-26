@@ -1,3 +1,4 @@
+
 <div class="container">
     <h2>Due Generation</h2>
     <div class="card">
@@ -8,7 +9,7 @@
             <form class="k-form" name="form1">
                 <div class="k-form-field">
                  <ng-container *ngFor="let day of days; let i=index">
-                    <input type="checkbox" id="ch{{i+1}}" class="k-checkbox"  name=ckb value={{i}} (change)="onCheckboxChange($event, i)" />
+                    <input type="checkbox" id="ch{{i+1}}" class="k-checkbox"  name=ckb value={{i}} (click)="chkcontrol(i)"  (change)="onCheckboxChange($event, i)"/>
                     <label class="k-checkbox-label" for="ch{{i+1}}">{{day | uppercase}}</label>&nbsp;&nbsp;
                  </ng-container>
                 </div>

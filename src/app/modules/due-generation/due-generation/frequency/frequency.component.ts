@@ -43,7 +43,6 @@ export class FrequencyComponent implements OnInit {
   ngOnInit() {}
   onCheckboxChange(event, value) {
     if (event.target.checked) {
-      console.log(value, "value");
       this.selectedDays.push(value);
     } else if (!event.target.checked) {
       const index = this.selectedDays.indexOf(value);
@@ -52,9 +51,8 @@ export class FrequencyComponent implements OnInit {
         this.selectedDays.splice(index, 1);
       }
     }
-    console.log(this.selectedDays, "this.selectedDays");
   }
-  // To generate daily due date
+  // To generate due date based on user selection (daily/ weekly/ monthly/ randomly)
   generateDueDates(value: string) {
     this.weekOff = JSON.parse(localStorage.getItem("weekOffs"));
     var jsonDate = JSON.parse(localStorage.getItem("dateRange"));
@@ -68,18 +66,13 @@ export class FrequencyComponent implements OnInit {
     weekday[4] = "Thursday";
     weekday[5] = "Friday";
     weekday[6] = "Saturday";
-
-    console.log(weekday[startDay.getDay()], "startDay");
     this.dayDif =
-      Math.abs(startDay.getTime() - endDay.getTime()) / 1000 / 60 / 60 / 24;
-    console.log("this.daydif", this.dayDif);
+    Math.abs(startDay.getTime() - endDay.getTime()) / 1000 / 60 / 60 / 24;
     for (let i = 0; i <= this.dayDif; i++) {
       this.dueDateDaily.push(addDays(startDay, i));
     }
-    console.log(this.dueDateDaily, "this.dueDateDailyhjhjh");
-    if (value == "daily") {
+    if (value == "daily") { // daily due date generation
       this.dueDateDaily.map(ele => {
-        console.log(ele.getDay(), "ele.getDay()", ele);
         if (
           ele.getDay() == this.weekOff[0] ||
           ele.getDay() == this.weekOff[1]
@@ -88,10 +81,10 @@ export class FrequencyComponent implements OnInit {
           this.dueDateDaily.splice(index, 1);
         }
       });
-      console.log(this.dueDateDaily, "delete");
       localStorage.setItem("dueDateDaily", JSON.stringify(this.dueDateDaily));
       alert("data submitted");
-    } else if (value == "weekly") {
+
+    } else if (value == "weekly") { // weekly due date generation
       this.dueDateDaily.map(ele => {
         this.selectedDays.map(day => {
           if (
@@ -105,15 +98,10 @@ export class FrequencyComponent implements OnInit {
           }
         });
       });
-      console.log("weekdly", this.dueDateWeekly);
       localStorage.setItem("dueDateWeekly", JSON.stringify(this.dueDateWeekly));
       alert("data submitted");
-    } else if (value == "monthly") {
-      console.log(
-        "------------",
-        new Date(localStorage.getItem("startDate")).getMonth()
-      );
-      console.log(this.selectedDays);
+
+    } else if (value == "monthly") { // monthly due date generation
       this.selectedDays.map(ele => {
         this.dueDateMonthly.push(addMonths(startDay, ele));
       });
@@ -122,13 +110,9 @@ export class FrequencyComponent implements OnInit {
         JSON.stringify(this.dueDateMonthly)
       );
       alert("data submitted");
-    } else if (value == "random") {
-      if (this.selectedOption == "weekly") {
-        console.log(
-          "math",
-          startDay.getTime() +
-            Math.random() * (endDay.getTime() - startDay.getTime())
-        );
+
+    } else if (value == "random") { // random due date generation
+      if (this.selectedOption == "weekly") { // random(weekly) due date generation
         this.dayDif /= 7;
         var noOfWeek = Math.floor(this.dayDif);
         for (let i = 0; i < noOfWeek; i++) {
@@ -148,7 +132,8 @@ export class FrequencyComponent implements OnInit {
           JSON.stringify(this.randomDatesWeekly)
         );
         alert("data submitted");
-      } else {
+
+      } else { // random(monthly) due date generation
         this.dayDif /= 30;
         var noOfMonth = Math.floor(this.dayDif);
         for (let i = 0; i < noOfMonth; i++) {
@@ -171,6 +156,7 @@ export class FrequencyComponent implements OnInit {
       }
     }
   }
+  // On change radio selection for random due generation
   onRandomChange(data) {
     this.selectedOption = data;
   }

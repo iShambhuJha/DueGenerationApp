@@ -34,7 +34,6 @@ export class ResultsComponent implements OnInit {
     JSON.parse(localStorage.getItem('weekOffs')).map(ele => {
       this.weekOffDays.push(weekday[ele]);
     })
-    console.log(this.weekOffDays, 'this.weekOffDays')
   }
 
 }
